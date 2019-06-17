@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import "./Usurvey.css";
 const firebase = require("firebase");
 const uuid = require("uuid");
 
@@ -33,6 +34,7 @@ export default class Usurvey extends Component {
     }
    
     handleSubmit = event => {
+        event.preventDefault()
         const studentName = this.refs.name.value
         this.setState({
             studentName: studentName
@@ -49,12 +51,54 @@ export default class Usurvey extends Component {
             studentName = <div >
                 <h4>Hey student, please enter your name: </h4>
                 <form onSubmit={this.handleSubmit}>
-                <input style={{ fontSize:"20px", padding:"15px"}}type="text" placeholder="Enter your name" ref="studentName"  />
+                <input style={{ fontSize:"20px", padding:"15px"}}type="text" placeholder="Enter your name" ref="name"  />
                 </form>
                  </div>
+                 questions = ""
 
+        } else if(this.state.studentName != "" && this.state.isSubmitted === false){
+            studentName = <p><h1>Welcome to U-Survey, {this.state.studentName}</h1> 
+            <br />
+            <h3>Answer the questions below</h3>
+            </p>
+
+            questions = <div>
+                <form onSubmit={this.handleQuestionsSubmit}>
+                    <div className="card">
+                        <label>Do you think global warming will wipe out all humans?</label> <br />
+                        <input type="radio" name="answer1" value="globalWarming" onChange={this.handleInputChange}/> Yes <br />
+                        <input type="radio" name="answer1" value="globalWarming" onChange={this.handleInputChange}/> No <br />
+                        <input type="radio" name="answer1" value="globalWarming" onChange={this.handleInputChange}/> Maybe
+                    </div>
+                    <div className="card">
+                        <label>I like to go above and beyond of what i am asked?</label> <br />
+                        <input type="radio" name="answer2" value="aboveBeyond" onChange={this.handleInputChange}/> Yes <br />
+                        <input type="radio" name="answer2" value="aboveBeyond" onChange={this.handleInputChange}/> No <br />
+                        <input type="radio" name="answer2" value="aboveBeyond" onChange={this.handleInputChange}/> Maybe
+                    </div>
+                    <div className="card">
+                        <label>Do you consider yourself a go getter?</label> <br />
+                        <input type="radio" name="answer3" value="goGetter" onChange={this.handleInputChange}/> Yes <br />
+                        <input type="radio" name="answer3" value="goGetter" onChange={this.handleInputChange}/> No <br />
+                        <input type="radio" name="answer3" value="goGetter" onChange={this.handleInputChange}/> Maybe
+                    </div>
+                    <div className="card">
+                        <label>Will planet earth survive longer than humans?</label> <br />
+                        <input type="radio" name="answer4" value="survival" onChange={this.handleInputChange}/> Yes <br />
+                        <input type="radio" name="answer4" value="survival" onChange={this.handleInputChange}/> No <br />
+                        <input type="radio" name="answer4" value="survival" onChange={this.handleInputChange}/> Maybe
+                    </div>
+                    <div className="card">
+                        <label>Are you motivated to strive and be your best?</label> <br />
+                        <input type="radio" name="answer5" value="motivated" onChange={this.handleInputChange}/> Yes <br />
+                        <input type="radio" name="answer5" value="motivated" onChange={this.handleInputChange}/> No <br />
+                        <input type="radio" name="answer5" value="motivated" onChange={this.handleInputChange}/> Maybe
+                    </div>
+                                <center><button style={{ padding:"10px", backgroundColor:"lightBlue", marginTop:"20px"}}>Submit</button></center>
+                </form>
+            </div>
         }
-        console.log(this.state.studentName)
+      
         return (
             <div style={{ margin: "100px"}}>
                 {studentName}

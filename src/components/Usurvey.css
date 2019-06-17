@@ -1,0 +1,9 @@
+.card {
+    position: relative;
+    width: 900px;
+    background-color: teal;
+    box-shadow: 0 3px 6px darkslategrey, 0 3px 6px darkslategrey;
+    border-style: dashed;
+    border-color: black;
+    line-height: 5px
+}
